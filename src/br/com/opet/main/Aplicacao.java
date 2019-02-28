@@ -85,7 +85,6 @@ public class Aplicacao {
 	}
 
 	public static int telaCadastro(Pessoa lPessoa[], int auxPessoa, int tipo) throws Exception {
-		int indice = lPessoa.length;
 
 		System.out.print("Nome: ");
 		String nome = Reader.readString();
