@@ -1,30 +1,45 @@
 package br.com.opet.main;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import com.opet.util.Reader;
 
 import br.com.opet.modelo.Pessoa;
 import br.com.opet.rh.AuxiliarAdministrativo;
 import br.com.opet.rh.Enfermeiro;
+import br.com.opet.rh.Especialidades;
 import br.com.opet.rh.Medico;
 
 public class Aplicacao {
 
 	public static void main(String[] args) throws Exception {
 
-		Pessoa lPessoa[] = new Pessoa[10];
-		int auxPessoa = 0;
+		HashSet<Pessoa> lPessoa = new HashSet<Pessoa>();
+		HashMap<Integer, String> lEsp = new HashMap<Integer, String>();
+
+		Especialidades esp = new Especialidades();
+		esp.setNomeEspecialidades("Cardiologia");
+		lEsp.put(0, esp.getNomeEspecialidades());
+		esp.setNomeEspecialidades("Nutrologia");
+		lEsp.put(1, esp.getNomeEspecialidades());
+		esp.setNomeEspecialidades("Oftalmologia");
+		lEsp.put(2, esp.getNomeEspecialidades());
+		esp.setNomeEspecialidades("Oncologia");
+		lEsp.put(3, esp.getNomeEspecialidades());
+		esp.setNomeEspecialidades("Pediatria");
+		lEsp.put(4, esp.getNomeEspecialidades());
 
 		int opc = -1;
 		opc = menuPrincipal();
 		while (opc != 0) {
 			switch (opc) {
 			case 1:
-				auxPessoa = cadastrar(lPessoa, auxPessoa);
+				cadastrar(lPessoa, lEsp);
 				break;
 			case 2:
-				consultar(lPessoa, auxPessoa);
+				consultar(lPessoa);
 				break;
 			default:
 				System.out.println("Opcao Invalida");
@@ -32,6 +47,29 @@ public class Aplicacao {
 			opc = menuPrincipal();
 		}
 
+	}
+
+	public static void cadastrarEspecialidade(HashMap<Integer, String> lEsp, Especialidades esp) throws Exception {
+		System.out.println("Informe o nome da nova ESPECIALIDADE: ");
+		String nomeEspecialidade = Reader.readString();
+		esp.setNomeEspecialidades(nomeEspecialidade);
+
+		int idEspecialidade = 0;
+
+		for (int i = 0; i <= lEsp.size(); i++) {
+			if (!lEsp.containsKey(idEspecialidade)) {
+				lEsp.put(idEspecialidade, esp.getNomeEspecialidades());
+				break;
+			}
+			idEspecialidade++;
+		}
+	}
+
+	public static void consultarEspecialidade(HashMap<Integer, String> lEsp) {
+		System.out.println("Selecione a especialidade");
+		for (int i = 0; i < lEsp.size(); i++) {
+			System.out.println("|ID: " + i + "|" + "Nome da Especialidade: " + lEsp.get(i) + " |");
+		}
 	}
 
 	public static int menuCadastrar() throws Exception {
@@ -47,13 +85,13 @@ public class Aplicacao {
 		return opc;
 	}
 
-	public static void consultar(Pessoa lPessoa[], int auxPessoa) {
-		for (int i = 0; i < auxPessoa; i++) {
-			System.out.println(lPessoa[i].toString());
+	public static void consultar(HashSet<Pessoa> lPessoa) {
+		for (Pessoa p : lPessoa) {
+			System.out.println(p.toString());
 		}
 	}
 
-	public static int cadastrar(Pessoa lPessoa[], int auxPessoa) throws Exception {
+	public static void cadastrar(HashSet<Pessoa> lPessoa, HashMap<Integer, String> lEsp) throws Exception {
 		int opc = menuCadastrar();
 
 		while (opc != 0) {
@@ -61,7 +99,7 @@ public class Aplicacao {
 			case 1:
 			case 2:
 			case 3:
-				auxPessoa = telaCadastro(lPessoa, auxPessoa, opc);
+				telaCadastro(lPessoa, opc, lEsp);
 				System.out.println("Cadastro a ser implementado!");
 				break;
 			default:
@@ -69,7 +107,6 @@ public class Aplicacao {
 			}
 			opc = menuCadastrar();
 		}
-		return auxPessoa;
 	}
 
 	public static int menuPrincipal() throws Exception {
@@ -84,7 +121,7 @@ public class Aplicacao {
 		return opc;
 	}
 
-	public static int telaCadastro(Pessoa lPessoa[], int auxPessoa, int tipo) throws Exception {
+	public static void telaCadastro(HashSet<Pessoa> lPessoa, int opc, HashMap<Integer, String> lEsp) throws Exception {
 
 		System.out.print("Nome: ");
 		String nome = Reader.readString();
@@ -102,7 +139,7 @@ public class Aplicacao {
 		System.out.print("Telefone: ");
 		String telefone = Reader.readString();
 
-		if (tipo == 1) {
+		if (opc == 1) {
 			Medico medico = new Medico();
 			medico.setNome(nome);
 			medico.setDtNascimento(sdf.parse(dtNascimento));
@@ -110,12 +147,18 @@ public class Aplicacao {
 			medico.setSexo(sexo);
 			medico.setTelefone(telefone);
 			System.out.println("Especialidade: ");
-			String especialidade = Reader.readString();
-			medico.setEspecialidade(especialidade);
+			int idEsp = 0;
+			do {
+				consultarEspecialidade(lEsp);
+				System.out.println("Informe uma opcao: ");
+				idEsp = Reader.readInt();
+			} while (!lEsp.containsKey(idEsp));
+			
+			medico.setEspecialidade(lEsp.get(idEsp));
 
-			lPessoa[auxPessoa] = medico;
+			lPessoa.add(medico);
 
-		} else if (tipo == 2) {
+		} else if (opc == 2) {
 			Enfermeiro enfermeiro = new Enfermeiro();
 			enfermeiro.setNome(nome);
 			enfermeiro.setDtNascimento(sdf.parse(dtNascimento));
@@ -126,7 +169,7 @@ public class Aplicacao {
 			int cargaHoraria = Reader.readInt();
 			enfermeiro.setCargaHoraria(cargaHoraria);
 
-			lPessoa[auxPessoa] = enfermeiro;
+			lPessoa.add(enfermeiro);
 
 		} else {
 			AuxiliarAdministrativo aux = new AuxiliarAdministrativo();
@@ -139,11 +182,9 @@ public class Aplicacao {
 			double salario = Reader.readDouble();
 			aux.setSalario(salario);
 
-			lPessoa[auxPessoa] = aux;
+			lPessoa.add(aux);
 
 		}
-		auxPessoa++;
-		return auxPessoa;
 	}
 
 }

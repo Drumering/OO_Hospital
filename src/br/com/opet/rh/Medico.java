@@ -7,7 +7,7 @@ public class Medico extends Pessoa {
 
 	public String toString() {
 		String str = "";
-		str = super.toString()	+ " - " + "| " + this.especialidade + " |";
+		str = super.toString() + " - " + "| " + this.especialidade + " |";
 
 		return str;
 	}
@@ -20,8 +20,7 @@ public class Medico extends Pessoa {
 	}
 
 	/**
-	 * @param especialidade
-	 *            the especialidade to set
+	 * @param especialidade the especialidade to set
 	 */
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
