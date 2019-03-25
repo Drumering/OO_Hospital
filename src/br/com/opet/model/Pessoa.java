@@ -8,6 +8,7 @@ public class Pessoa {
 	protected String cpf;
 	protected String Sexo;
 	protected String telefone;
+	
 	/**
 	 * @return the nome
 	 */

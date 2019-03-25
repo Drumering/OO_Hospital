@@ -16,7 +16,7 @@ public class TelaCadastroMedico {
 	GerenciarEspecialidades gEspecialidades = new GerenciarEspecialidades();
 
 	public Medico showCadastrar() throws Exception {
-
+		
 		System.out.println("===================");
 		System.out.println("Informe o NOME do(a) medico(a) a ser cadastrado(a): ");
 		String nome = Reader.readString();
