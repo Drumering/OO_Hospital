@@ -1,4 +1,4 @@
-package br.com.opet.modelo;
+package br.com.opet.model.top;
 
 import java.util.Date;
 

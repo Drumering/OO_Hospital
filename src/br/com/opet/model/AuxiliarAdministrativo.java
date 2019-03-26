@@ -1,6 +1,6 @@
-package br.com.opet.rh;
+package br.com.opet.model;
 
-import br.com.opet.modelo.Pessoa;
+import br.com.opet.model.top.Pessoa;
 
 public class AuxiliarAdministrativo extends Pessoa {
 	private double Salario;

@@ -6,11 +6,11 @@ import java.util.HashSet;
 
 import com.opet.util.Reader;
 
-import br.com.opet.modelo.Pessoa;
-import br.com.opet.rh.AuxiliarAdministrativo;
-import br.com.opet.rh.Enfermeiro;
-import br.com.opet.rh.Especialidades;
-import br.com.opet.rh.Medico;
+import br.com.opet.model.AuxiliarAdministrativo;
+import br.com.opet.model.Enfermeiro;
+import br.com.opet.model.Especialidades;
+import br.com.opet.model.Medico;
+import br.com.opet.model.top.Pessoa;
 
 public class Aplicacao {
 
@@ -18,7 +18,7 @@ public class Aplicacao {
 
 		HashSet<Pessoa> lPessoa = new HashSet<Pessoa>();
 		HashMap<Integer, String> lEsp = new HashMap<Integer, String>();
-		
+
 		Especialidades esp = new Especialidades();
 		esp.setNomeEspecialidades("Cardiologia");
 		lEsp.put(0, esp.getNomeEspecialidades());
@@ -99,8 +99,12 @@ public class Aplicacao {
 			case 1:
 			case 2:
 			case 3:
-				telaCadastro(lPessoa, opc, lEsp);
-				System.out.println("Cadastro a ser implementado!");
+				try {
+					telaCadastro(lPessoa, opc, lEsp);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					System.out.println("Nao foi possivel cadastrar, verifique os dados inseridos");
+				}
 				break;
 			default:
 				System.out.println("Opcao Invalida");
@@ -153,7 +157,7 @@ public class Aplicacao {
 				System.out.println("Informe uma opcao: ");
 				idEsp = Reader.readInt();
 			} while (!lEsp.containsKey(idEsp));
-			
+
 			medico.setEspecialidade(lEsp.get(idEsp));
 
 			lPessoa.add(medico);

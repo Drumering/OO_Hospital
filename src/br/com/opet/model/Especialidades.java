@@ -1,42 +1,19 @@
 package br.com.opet.model;
 
 public class Especialidades {
-	int id;
+	private String nomeEspecialidades;
 
 	/**
-	 * @return the id
+	 * @return the nomeEspecialidades
 	 */
-	public int getId() {
-		return id;
+	public String getNomeEspecialidades() {
+		return nomeEspecialidades;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param nomeEspecialidades the nomeEspecialidades to set
 	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	private String Especialidade;
-
-	public Especialidades(int id, String Especialidade) {
-		this.id = id;
-		this.Especialidade = Especialidade;
-	}
-
-	/**
-	 * @return the especialidade
-	 */
-	public String getEspecialidade() {
-		return Especialidade;
-	}
-
-	/**
-	 * @param especialidade
-	 *            the especialidade to set
-	 */
-	public void setEspecialidade(String especialidade) {
-		Especialidade = especialidade;
+	public void setNomeEspecialidades(String nomeEspecialidades) {
+		this.nomeEspecialidades = nomeEspecialidades;
 	}
 }
