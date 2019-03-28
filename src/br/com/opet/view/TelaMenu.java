@@ -9,7 +9,7 @@ public class TelaMenu {
 		System.out.println("=================");
 		System.out.println("1 - Pessoa");
 		System.out.println("2 - Especialidade");
-		System.out.println("0 - Voltar");
+		System.out.println("0 - Sair");
 
 		int opc = Reader.readInt();
 

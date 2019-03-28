@@ -18,7 +18,7 @@ public class ControllerPessoa {
 		while (opc != 0) {
 			switch (opc) {
 			case 1:
-				listaPessoa.add(tp.showCadastrar(cEspecialidade.especialidades()));
+				listaPessoa.add(tp.showCadastrar(cEspecialidade.getListaEspecialidade()));
 				break;
 			case 2:
 				tp.Listar(listaPessoa);

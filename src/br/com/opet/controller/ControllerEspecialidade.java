@@ -6,19 +6,19 @@ import br.com.opet.model.Especialidade;
 import br.com.opet.view.TelaEspecialidade;
 
 public class ControllerEspecialidade {
-	HashMap<Integer, Especialidade> listaEspecialidade = especialidades();
 	TelaEspecialidade te = new TelaEspecialidade();
+	HashMap<Integer, Especialidade> listaEspecialidade = new HashMap<Integer, Especialidade>();
+	
+	public HashMap<Integer, Especialidade> getListaEspecialidade() {
+		return listaEspecialidade;
+	}
 
-	public HashMap<Integer, Especialidade> especialidades() {
-		HashMap<Integer, Especialidade> especialidades = new HashMap<Integer, Especialidade>();
-
-		especialidades.put(0, new Especialidade(0, "Angiologia"));
-		especialidades.put(1, new Especialidade(1, "Oncologia"));
-		especialidades.put(2, new Especialidade(2, "Dermatologia"));
-		especialidades.put(3, new Especialidade(3, "Endocrinologia"));
-		especialidades.put(4, new Especialidade(4, "Oftalmologia"));
-
-		return especialidades;
+	public ControllerEspecialidade() {
+		listaEspecialidade.put(0, new Especialidade(0, "Angiologia"));
+		listaEspecialidade.put(1, new Especialidade(1, "Oncologia"));
+		listaEspecialidade.put(2, new Especialidade(2, "Dermatologia"));
+		listaEspecialidade.put(3, new Especialidade(3, "Endocrinologia"));
+		listaEspecialidade.put(4, new Especialidade(4, "Oftalmologia"));
 	}
 
 	public void showSubMenuEspecialidade() throws Exception {
