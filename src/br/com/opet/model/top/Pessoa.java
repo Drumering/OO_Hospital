@@ -1,5 +1,6 @@
 package br.com.opet.model.top;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Pessoa {
@@ -9,10 +10,13 @@ public class Pessoa {
 	protected String cpf;
 	protected String Sexo;
 	protected String telefone;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public String toString() {
 		String str = "";
-		str = this.nome + " - " + this.dtNascimento + " - " + this.cpf + " - " + this.Sexo + " - " + this.telefone;
+		String dtNascimento = sdf.format(this.dtNascimento).toString();
+		str = this.nome + " - " + dtNascimento + " - " + this.cpf + " - " + this.Sexo + " - " + this.telefone;
 
 		return str;
 	}
