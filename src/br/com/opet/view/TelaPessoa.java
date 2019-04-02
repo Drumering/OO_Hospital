@@ -1,7 +1,6 @@
 package br.com.opet.view;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.opet.util.Reader;
@@ -87,10 +86,8 @@ public class TelaPessoa {
 		}
 		return p;
 	}
-	
-	public void Listar(ArrayList<Pessoa> listaPessoa) {
-		for (Pessoa pessoa : listaPessoa) {
-			System.out.println(pessoa);
-		}
+
+	public void showPessoa(Pessoa p) {
+		System.out.println(p);
 	}
 }
