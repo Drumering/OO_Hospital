@@ -24,7 +24,7 @@ public class ControllerPessoa {
 				listaPessoa.add(tp.showCadastrar(cEspecialidade.getListaEspecialidade()));
 				break;
 			case 2:
-				Listar(listaPessoa);
+				Listar();
 			default:
 				break;
 			}
@@ -32,7 +32,7 @@ public class ControllerPessoa {
 		}
 	}
 
-	public void Listar(ArrayList<Pessoa> listaPessoa) {
+	public void Listar() {
 		PessoaDAO pDAO = new PessoaDAO();
 
 		ArrayList<Pessoa> alPessoa = pDAO.listar();

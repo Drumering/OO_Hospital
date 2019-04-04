@@ -1,14 +1,7 @@
 package br.com.opet.main;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.opet.util.Reader;
-
 import br.com.opet.controller.ControllerEspecialidade;
 import br.com.opet.controller.ControllerPessoa;
-import br.com.opet.model.top.Pessoa;
 import br.com.opet.view.TelaMenu;
 
 public class Aplicacao {
@@ -36,21 +29,15 @@ public class Aplicacao {
 		}
 	}
 
-	public static Pessoa ShowCadastrar() {
-		SimpleDateFormat sdf = new SimpleDateFormat();
-		Pessoa pTMP = new Pessoa();
-		System.out.println("nome: ");
-		pTMP.setNome(Reader.readString());
-		System.out.println("Dt Nascimento");
-		String dateNascimento = Reader.readString();
-		Date dtNascimento = null;
-		try {
-			dtNascimento = sdf.parse(dateNascimento);
-		} catch (ParseException e) {
-			System.out.println("Erro ao informar a date de nascimento: ");
-		}
-		pTMP.setDtNascimento(dtNascimento);
-
-		return pTMP;
-	}
+	/*
+	 * public static Pessoa ShowCadastrar() { SimpleDateFormat sdf = new
+	 * SimpleDateFormat(); Pessoa pTMP = new Pessoa(); System.out.println("nome: ");
+	 * pTMP.setNome(Reader.readString()); System.out.println("Dt Nascimento");
+	 * String dateNascimento = Reader.readString(); Date dtNascimento = null; try {
+	 * dtNascimento = sdf.parse(dateNascimento); } catch (ParseException e) {
+	 * System.out.println("Erro ao informar a date de nascimento: "); }
+	 * pTMP.setDtNascimento(dtNascimento);
+	 * 
+	 * return pTMP; }
+	 */
 }

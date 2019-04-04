@@ -1,13 +1,11 @@
 package br.com.opet.view;
 
-import java.util.HashMap;
-
 import com.opet.util.Reader;
 
 import br.com.opet.model.Especialidade;
 
 public class TelaEspecialidade {
-	
+
 	public int showSubMenuPrincipal() throws Exception {
 		System.out.println("Informe uma opcao");
 		System.out.println("=================");
@@ -19,11 +17,14 @@ public class TelaEspecialidade {
 
 		return opc;
 	}
-	
-	public Especialidade showCadastrar(HashMap<Integer, Especialidade> listaEspecialidade) throws Exception {
+
+	public Especialidade showCadastrar() throws Exception {
 		System.out.println("Informe o nome da nova ESPECIALIDADE: ");
 		String nomeEspecialidade = Reader.readString();
-		int id = listaEspecialidade.size();
-		return new Especialidade(id,nomeEspecialidade);
+		return new Especialidade(nomeEspecialidade);
+	}
+
+	public void showEspecialidade(Especialidade e) {
+		System.out.println(e.getId() + " - " + e.getDescricao());
 	}
 }

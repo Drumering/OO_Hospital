@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import br.com.opet.model.top.Pessoa;
 
-public class PessoaDAO extends Pessoa {
+public class PessoaDAO{
 	public boolean salvar(Pessoa pTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;

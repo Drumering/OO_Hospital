@@ -1,14 +1,16 @@
 package br.com.opet.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.com.opet.model.Especialidade;
+import br.com.opet.model.EspecialidadeDAO;
 import br.com.opet.view.TelaEspecialidade;
 
 public class ControllerEspecialidade {
 	TelaEspecialidade te = new TelaEspecialidade();
 	HashMap<Integer, Especialidade> listaEspecialidade = new HashMap<Integer, Especialidade>();
-	
+
 	public HashMap<Integer, Especialidade> getListaEspecialidade() {
 		return listaEspecialidade;
 	}
@@ -29,7 +31,7 @@ public class ControllerEspecialidade {
 				showCadastrar();
 				break;
 			case 2:
-				Listar(listaEspecialidade);
+				Listar();
 			default:
 				break;
 			}
@@ -38,13 +40,16 @@ public class ControllerEspecialidade {
 	}
 
 	private void showCadastrar() throws Exception {
-		Especialidade esp = te.showCadastrar(listaEspecialidade);
-		listaEspecialidade.put(esp.getId(), esp);
+		Especialidade esp = te.showCadastrar();
+		EspecialidadeDAO eDAO = new EspecialidadeDAO();
+		eDAO.salvarEspecialidade(esp);
 	}
 
-	public void Listar(HashMap<Integer, Especialidade> listaEspecialidade) {
-		for (Especialidade esp : listaEspecialidade.values()) {
-			System.out.println(esp.getId() + " - " + esp.getDescricao());
+	public void Listar() {
+		EspecialidadeDAO eDAO = new EspecialidadeDAO();
+		ArrayList<Especialidade> lista = eDAO.listarEspecialidade();
+		for (Especialidade esp : lista) {
+			te.showEspecialidade(esp);
 		}
 	}
 }

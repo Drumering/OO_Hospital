@@ -68,7 +68,7 @@ public class TelaPessoa {
 			System.out.println("Especialidade: ");
 			do {
 				System.out.println("informe uma opcao:");
-				cEspecialidade.Listar(especialidades);
+				cEspecialidade.Listar();
 				esp = Reader.readInt();
 			} while (!especialidades.containsKey(esp));
 

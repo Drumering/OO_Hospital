@@ -12,10 +12,10 @@ public class Conexao {
 
 		try {
 			// 1 - Driver
-			Class.forName("oracle.jdbc.driver.oracleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2 - Propriedades da conexao
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "system");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "system");
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("Falha ao conectar com o Banco!");
 		}
