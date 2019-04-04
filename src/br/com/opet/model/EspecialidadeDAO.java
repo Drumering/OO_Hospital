@@ -14,7 +14,7 @@ public class EspecialidadeDAO {
 		PreparedStatement stmt = null;
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("insert into especialidade(id_especialidade,desc_especialidade) values(seq_esp.nextval,?)");
+			stmt = con.prepareStatement("insert into especialidade(id_esp,desc_esp) values(seq_esp.nextval,?)");
 			stmt.setString(1, eTMP.getDescricao());
 			int rowAf = stmt.executeUpdate();
 			if (rowAf == 1) {
@@ -59,11 +59,11 @@ public class EspecialidadeDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = con.prepareStatement("select id_especialidade,desc_especialidade from especialidade");
+			stmt = con.prepareStatement("select id_esp,desc_esp from especialidade");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt("id_especialidade");
-				String descricao = rs.getString("desc_especialidade");
+				int id = rs.getInt("id_esp");
+				String descricao = rs.getString("desc_esp");
 				Especialidade eTMP = new Especialidade(id, descricao);
 				lEsp.add(eTMP);
 			}
