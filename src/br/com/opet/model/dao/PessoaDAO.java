@@ -16,9 +16,13 @@ public class PessoaDAO{
 
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("insert into pessoa(nome,dt_nasc) values (?,?)");
-			stmt.setString(1, pTMP.getNome());
-			stmt.setDate(2, new Date(pTMP.getDtNascimento().getTime()));
+			stmt = con.prepareStatement("insert into pessoa(cpf,nome,sexo,telefone,dt_nascimento) values (?,?,?,?,?)");
+			stmt.setString(1, pTMP.getCpf());
+			stmt.setString(2, pTMP.getNome());
+			stmt.setString(3, pTMP.getSexo());
+			stmt.setString(4, pTMP.getTelefone());
+			stmt.setDate(5, new Date(pTMP.getDtNascimento().getTime()));
+			
 			int rowAf = stmt.executeUpdate();
 			if (rowAf == 1) {
 				con.commit();

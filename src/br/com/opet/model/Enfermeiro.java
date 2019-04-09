@@ -7,7 +7,8 @@ import br.com.opet.model.top.Pessoa;
 public class Enfermeiro extends Pessoa {
 	private int cargaHoraria;
 
-	public Enfermeiro(String nome, Date dtNascimento, String cpf, String sexo, String telefone, int cargaHoraria) {
+	public Enfermeiro(int tipo,String nome, Date dtNascimento, String cpf, String sexo, String telefone, int cargaHoraria) {
+		this.Tipo = tipo;
 		this.nome = nome;
 		this.dtNascimento = dtNascimento;
 		this.cpf = cpf;

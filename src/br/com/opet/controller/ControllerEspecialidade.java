@@ -45,11 +45,14 @@ public class ControllerEspecialidade {
 		eDAO.salvarEspecialidade(esp);
 	}
 
-	public void Listar() {
+	public ArrayList<Integer> Listar() {
 		EspecialidadeDAO eDAO = new EspecialidadeDAO();
 		ArrayList<Especialidade> lista = eDAO.listarEspecialidade();
+		ArrayList<Integer> y = new ArrayList<Integer>();
 		for (Especialidade esp : lista) {
 			te.showEspecialidade(esp);
+			y.add(esp.getId());
 		}
+		return y;
 	}
 }

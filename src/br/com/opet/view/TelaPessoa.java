@@ -1,14 +1,14 @@
 package br.com.opet.view;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.opet.util.Reader;
 
 import br.com.opet.controller.ControllerEspecialidade;
 import br.com.opet.model.AuxiliarAdministrativo;
 import br.com.opet.model.Enfermeiro;
-import br.com.opet.model.Especialidade;
 import br.com.opet.model.Medico;
 import br.com.opet.model.top.Pessoa;
 
@@ -28,7 +28,7 @@ public class TelaPessoa {
 		return opc;
 	}
 
-	public int showSubMenuCadastrar() throws Exception {
+	public int showSubMenuCadastrar() {
 		System.out.println("Informe uma opcao");
 		System.out.println("=================");
 		System.out.println("1 - Medico");
@@ -36,12 +36,17 @@ public class TelaPessoa {
 		System.out.println("3 - Auxiliar Administrativo");
 		System.out.println("0 - Voltar");
 
-		int opc = Reader.readInt();
+		int opc = -1;
+		try {
+			opc = Reader.readInt();
+		} catch (Exception e) {
+			System.out.println("O valor informado deve ser um numero inteiro");
+		}
 
 		return opc;
 	}
 
-	public Pessoa showCadastrar(HashMap<Integer, Especialidade> especialidades) throws Exception {
+	public Pessoa showCadastrar() {
 
 		int opc = showSubMenuCadastrar();
 
@@ -65,24 +70,51 @@ public class TelaPessoa {
 
 		if (opc == 1) {
 			int esp = -1;
+			ArrayList<Integer> idEspecialidade = cEspecialidade.Listar();
 			System.out.println("Especialidade: ");
 			do {
 				System.out.println("informe uma opcao:");
 				cEspecialidade.Listar();
-				esp = Reader.readInt();
-			} while (!especialidades.containsKey(esp));
+				try {
+					esp = Reader.readInt();
+				} catch (Exception e) {
+					System.out.println("O valor informado deve ser um numero inteiro");
+				}
+			} while (!idEspecialidade.contains(esp));
 
-			p = new Medico(nome, sdf.parse(dtNascimento), cpf, sexo, telefone, esp);
+			try {
+				p = new Medico(opc, nome, sdf.parse(dtNascimento), cpf, sexo, telefone, esp);
+			} catch (ParseException e) {
+				System.out.println("O formato da data de nascimento deve ser dd/MM/yyyy");
+			}
 
 		} else if (opc == 2) {
 			System.out.println("Carga Horaria: ");
-			int cargaHoraria = Reader.readInt();
-			p = new Enfermeiro(nome, sdf.parse(dtNascimento), cpf, sexo, telefone, cargaHoraria);
+			int cargaHoraria = -1;
+			try {
+				cargaHoraria = Reader.readInt();
+			} catch (Exception e) {
+				System.out.println("O valor informado deve ser um numero inteiro");
+			}
+			try {
+				p = new Enfermeiro(opc, nome, sdf.parse(dtNascimento), cpf, sexo, telefone, cargaHoraria);
+			} catch (ParseException e) {
+				System.out.println("O formato da data de nascimento deve ser dd/MM/yyyy");
+			}
 
 		} else {
 			System.out.println("Salario: ");
-			double salario = Reader.readDouble();
-			p = new AuxiliarAdministrativo(nome, sdf.parse(dtNascimento), cpf, sexo, telefone, salario);
+			double salario = -1;
+			try {
+				salario = Reader.readDouble();
+			} catch (Exception e) {
+				System.out.println("O valor informado deve ser no formato 9.99");
+			}
+			try {
+				p = new AuxiliarAdministrativo(opc, nome, sdf.parse(dtNascimento), cpf, sexo, telefone, salario);
+			} catch (ParseException e) {
+				System.out.println("O formato da data de nascimento deve ser dd/MM/yyyy");
+			}
 		}
 		return p;
 	}

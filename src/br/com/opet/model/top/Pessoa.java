@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Pessoa {
 
+	protected int Tipo;
 	protected String nome;
 	protected Date dtNascimento;
 	protected String cpf;
@@ -94,6 +95,20 @@ public class Pessoa {
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	/**
+	 * @return the tipo
+	 */
+	public int getTipo() {
+		return Tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(int tipo) {
+		Tipo = tipo;
 	}
 
 }

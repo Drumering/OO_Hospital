@@ -21,7 +21,7 @@ public class ControllerPessoa {
 		while (opc != 0) {
 			switch (opc) {
 			case 1:
-				listaPessoa.add(tp.showCadastrar(cEspecialidade.getListaEspecialidade()));
+				showCadastrar();
 				break;
 			case 2:
 				Listar();
@@ -29,6 +29,16 @@ public class ControllerPessoa {
 				break;
 			}
 			opc = tp.showSubMenuPrincipal();
+		}
+	}
+
+	public void showCadastrar() {
+		try {
+			Pessoa p = tp.showCadastrar();
+			PessoaDAO pDAO = new PessoaDAO();
+			pDAO.salvar(p);
+		} catch (Exception e) {
+			System.out.println("nao foi possivel recuperar dados da TelaPessoa");
 		}
 	}
 
