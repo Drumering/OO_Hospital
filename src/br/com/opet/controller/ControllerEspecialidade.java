@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.com.opet.model.Especialidade;
-import br.com.opet.model.EspecialidadeDAO;
+import br.com.opet.model.dao.EspecialidadeDAO;
 import br.com.opet.view.TelaEspecialidade;
 
 public class ControllerEspecialidade {

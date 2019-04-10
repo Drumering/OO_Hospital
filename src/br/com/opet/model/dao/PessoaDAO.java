@@ -124,7 +124,7 @@ public class PessoaDAO {
 			stmt.setString(2, pTMP.getCpf());
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Nao foi possivel ATUALIZAR os dados da pessoa");
 		}
 
 		return false;
