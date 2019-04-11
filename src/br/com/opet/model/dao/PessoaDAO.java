@@ -55,13 +55,23 @@ public class PessoaDAO {
 	public boolean atualizar(Pessoa pTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
+		
 		// recuperar(pTMP);
 		try {
 			con.setAutoCommit(false);
 			stmt = con.prepareStatement("update pessoa set nome = ? where cpf = ?");
 			stmt.setString(1, pTMP.getNome());
 			stmt.setString(2, pTMP.getCpf());
-
+			
+			int rowAf = stmt.executeUpdate();
+			if (rowAf == 1) {
+				con.commit();
+				return true;
+			} else {
+				con.rollback();
+				System.out.println("Falha ao ATUALIZAR pessoa");
+				return false;
+			}
 		} catch (Exception e) {
 			System.out.println("Nao foi possivel ATUALIZAR os dados da pessoa");
 		}
@@ -104,7 +114,7 @@ public class PessoaDAO {
 		}
 	}
 
-	public Pessoa recuperar(Pessoa pTMP) {
+	public Pessoa recuperar(String cpf) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -112,13 +122,13 @@ public class PessoaDAO {
 
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("select nome from pessoa where nome = ?");
-			stmt.setString(1, pTMP.getNome());
+			stmt = con.prepareStatement("select cpf,nome, from pessoa where cpf = ?");
+			stmt.setString(1, cpf);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				peTMP.setNome(rs.getString("nome"));
 				peTMP.setCpf(rs.getString("cpf"));
-				peTMP.setDtNascimento(rs.getDate("dt_nasc"));
+				peTMP.setDtNascimento(rs.getDate("dt_nascimento"));
 				peTMP.setSexo(rs.getString("sexo"));
 				peTMP.setTelefone(rs.getString("telefone"));
 			}

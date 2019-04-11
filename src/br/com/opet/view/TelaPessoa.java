@@ -16,16 +16,22 @@ public class TelaPessoa {
 
 	ControllerEspecialidade cEspecialidade = new ControllerEspecialidade();
 
-	public int showSubMenuPrincipal() throws Exception {
+	public int showSubMenuPrincipal() {
 		System.out.println("Informe uma opcao");
 		System.out.println("=================");
 		System.out.println("1 - Cadastrar");
 		System.out.println("2 - Consultar");
+		System.out.println("3 - Atualizar");
 		System.out.println("0 - Sair");
 
-		int opc = Reader.readInt();
-
-		return opc;
+		int opc = -1;
+		try {
+			opc = Reader.readInt();
+			return opc;
+		} catch (Exception e) {
+			System.out.println("Opcao Invalida, informe o numero correspondente a opcao");
+			return opc;
+		}
 	}
 
 	public int showSubMenuCadastrar() {
@@ -44,6 +50,18 @@ public class TelaPessoa {
 		}
 
 		return opc;
+	}
+
+	public String showMenuAtualizar() {
+		System.out.println("Informe o CPF da Pessoa (999.999.999-99)");
+		System.out.println("=================");
+		String cpf = Reader.readString();
+
+		while (cpf.split(".").length != 3 && cpf.split("-").length != 2) {
+			System.out.println("Informe o CPF no padrao (999.999.999-99)");
+			cpf = Reader.readString();
+		}
+		return cpf;
 	}
 
 	public Pessoa showCadastrar() {

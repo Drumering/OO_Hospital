@@ -15,6 +15,7 @@ import br.com.opet.view.TelaPessoa;
 public class ControllerPessoa {
 
 	TelaPessoa tp = new TelaPessoa();
+	PessoaDAO pDAO = new PessoaDAO();
 	ControllerEspecialidade cEspecialidade = null;
 	ArrayList<Pessoa> listaPessoa = new ArrayList<Pessoa>();
 
@@ -31,6 +32,8 @@ public class ControllerPessoa {
 				break;
 			case 2:
 				Listar();
+			case 3:
+				System.out.println("A implementar");
 			default:
 				break;
 			}
@@ -38,10 +41,15 @@ public class ControllerPessoa {
 		}
 	}
 
+	public void showAtualizar() {
+		String cpf = tp.showMenuAtualizar();
+		pDAO.recuperar(cpf);
+		
+	}
+
 	public void showCadastrar() {
 		try {
 			Pessoa p = tp.showCadastrar();
-			PessoaDAO pDAO = new PessoaDAO();
 			pDAO.salvar(p);
 
 			if (p.getTipo() == 1) {
@@ -50,11 +58,11 @@ public class ControllerPessoa {
 				mDAO.salvarMedico(m);
 			} else if (p.getTipo() == 2) {
 				EnfermeiroDAO eDAO = new EnfermeiroDAO();
-				Enfermeiro e = (Enfermeiro)p;
+				Enfermeiro e = (Enfermeiro) p;
 				eDAO.salvarEnfermeiro(e);
-			}else if(p.getTipo() == 3) {
+			} else if (p.getTipo() == 3) {
 				AuxiliarAdministrativoDAO aDAO = new AuxiliarAdministrativoDAO();
-				AuxiliarAdministrativo a = (AuxiliarAdministrativo)p;
+				AuxiliarAdministrativo a = (AuxiliarAdministrativo) p;
 				aDAO.salvarAuxiliarAdministrativo(a);
 			}
 		} catch (Exception e) {
