@@ -31,9 +31,13 @@ public class ControllerPessoa {
 				showCadastrar();
 				break;
 			case 2:
-				Listar();
+				listAllPessoas();
+				break;
 			case 3:
-				System.out.println("A implementar");
+				showAtualizar();
+			case 4:
+				showDeletar();
+				break;
 			default:
 				break;
 			}
@@ -42,9 +46,44 @@ public class ControllerPessoa {
 	}
 
 	public void showAtualizar() {
-		String cpf = tp.showMenuAtualizar();
-		pDAO.recuperar(cpf);
-		
+		String cpf = tp.showRecuperarPessoa();
+		Pessoa p = pDAO.recuperar(cpf);
+		tp.showPessoa(p);
+		int opc = tp.showMenuAlterar();
+		while (opc != 0) {
+			switch (opc) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+				Pessoa pAlterada = tp.showAlterar(p, opc);
+				pDAO.atualizarPessoa(pAlterada, cpf);
+				break;
+			default:
+				break;
+			}
+			opc = tp.showMenuAlterar();
+		}
+	}
+
+	public void showDeletar() {
+		String cpf = tp.showRecuperarPessoa();
+		Pessoa p = pDAO.recuperar(cpf);
+		tp.showPessoa(p);
+		int opc = tp.showMenuDeletar();
+		while (opc != 0) {
+			switch (opc) {
+			case 1:
+				pDAO.deletarPessoa(p);
+				break;
+			default:
+				break;
+			}
+			if (opc == 2 || opc == 1) {
+				break;
+			}
+			opc = tp.showMenuDeletar();
+		}
 	}
 
 	public void showCadastrar() {
@@ -70,7 +109,7 @@ public class ControllerPessoa {
 		}
 	}
 
-	public void Listar() {
+	public void listAllPessoas() {
 		PessoaDAO pDAO = new PessoaDAO();
 
 		ArrayList<Pessoa> alPessoa = pDAO.listar();

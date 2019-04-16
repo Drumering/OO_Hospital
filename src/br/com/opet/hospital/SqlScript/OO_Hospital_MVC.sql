@@ -32,18 +32,18 @@ constraint pessoa_pk primary key(cpf)
 create table medico(
 cpf varchar2(14) not null,
 especialidade number(10) not null,
-constraint pessoa_fk foreign key (cpf) references pessoa (cpf),
+constraint pessoa_fk foreign key (cpf) references pessoa (cpf) on cascade,
 constraint esp_fk foreign key (especialidade) references especialidade (id_esp)
 );
 
 create table enfermeiro(
 cpf varchar2(14) not null,
 carga_horaria number(10) not null,
-constraint enf_fk foreign key (cpf) references pessoa (cpf)
+constraint enf_fk foreign key (cpf) references pessoa (cpf) on cascade
 );
 
 create table auxAdm(
 cpf varchar2(14) not null,
 salario number(9,2) not null,
-constraint auxAdm_fk foreign key (cpf) references pessoa (cpf)
+constraint auxAdm_fk foreign key (cpf) references pessoa (cpf) on cascade
 );

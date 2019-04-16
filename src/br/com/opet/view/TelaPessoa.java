@@ -22,6 +22,7 @@ public class TelaPessoa {
 		System.out.println("1 - Cadastrar");
 		System.out.println("2 - Consultar");
 		System.out.println("3 - Atualizar");
+		System.out.println("4 - Deletar");
 		System.out.println("0 - Sair");
 
 		int opc = -1;
@@ -52,7 +53,7 @@ public class TelaPessoa {
 		return opc;
 	}
 
-	public String showMenuAtualizar() {
+	public String showRecuperarPessoa() {
 		System.out.println("Informe o CPF da Pessoa (999.999.999-99)");
 		System.out.println("=================");
 		String cpf = Reader.readString();
@@ -62,6 +63,84 @@ public class TelaPessoa {
 			cpf = Reader.readString();
 		}
 		return cpf;
+	}
+
+	public int showMenuAlterar() {
+		int opc = -1;
+		System.out.println("=============");
+		System.out.println("Quais dados deseja alterar?");
+		System.out.println("1 - Nome");
+		System.out.println("2 - Sexo");
+		System.out.println("3 - Data de Nascimento");
+		System.out.println("4 - Telefone:");
+		System.out.println("0 - Voltar");
+		System.out.println("=============");
+
+		try {
+			opc = Reader.readInt();
+		} catch (Exception e) {
+			System.out.println("A opcao informada precisa ser um numero");
+		}
+
+		return opc;
+	}
+
+	public int showMenuDeletar() {
+		int opc = -1;
+		System.out.println("=============");
+		System.out.println("Informe a confirmacao de DELETE");
+		System.out.println("Confirma DELETE da pessoa?");
+		System.out.println("=============");
+
+		System.out.println("1 - Sim");
+		System.out.println("2 - Nao");
+		System.out.println("0 - Voltar");
+
+		try {
+			opc = Reader.readInt();
+		} catch (Exception e) {
+			System.out.println("A opcao deve ser informado no padrao numerico!");
+		}
+		
+		if(opc == 2) {
+			System.out.println("Cancelando operacao");
+		}
+
+		return opc;
+	}
+
+	public Pessoa showAlterar(Pessoa p, int opc) {
+
+		switch (opc) {
+		case 1:
+			System.out.println("Informe o NOME: ");
+			String newNome = Reader.readString();
+			p.setNome(newNome);
+			break;
+		case 2:
+			System.out.println("Informe o Sexo: ");
+			String newSexo = Reader.readString();
+			p.setSexo(newSexo);
+			break;
+		case 3:
+			System.out.print("Data de Nascimento (DD/MM/YYYY): ");
+			String dtNascimento = Reader.readString();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				p.setDtNascimento(sdf.parse(dtNascimento));
+			} catch (ParseException e) {
+				System.out.println("Data de nascimento deve ser no formato (DD/MM/YYYY)");
+			}
+			break;
+		case 4:
+			System.out.println("Informe o Telefone: ");
+			String newTelefone = Reader.readString();
+			p.setSexo(newTelefone);
+			break;
+		default:
+			break;
+		}
+		return p;
 	}
 
 	public Pessoa showCadastrar() {

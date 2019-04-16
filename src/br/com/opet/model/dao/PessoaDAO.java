@@ -52,17 +52,20 @@ public class PessoaDAO {
 		}
 	}
 
-	public boolean atualizar(Pessoa pTMP) {
+	public boolean atualizarPessoa(Pessoa pTMP, String cpf) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
-		
+
 		// recuperar(pTMP);
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("update pessoa set nome = ? where cpf = ?");
+			stmt = con.prepareStatement("update pessoa set nome = ?, sexo = ?, dt_nascimento = ?, telefone = ? where cpf = ?");
 			stmt.setString(1, pTMP.getNome());
-			stmt.setString(2, pTMP.getCpf());
-			
+			stmt.setString(2, pTMP.getSexo());
+			stmt.setDate(3, new Date(pTMP.getDtNascimento().getTime()));
+			stmt.setString(4, pTMP.getTelefone());
+			stmt.setString(5, cpf);
+
 			int rowAf = stmt.executeUpdate();
 			if (rowAf == 1) {
 				con.commit();
@@ -74,18 +77,17 @@ public class PessoaDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("Nao foi possivel ATUALIZAR os dados da pessoa");
+			return false;
 		}
-
-		return false;
 	}
 
-	public boolean apagar(Pessoa pTMP) {
+	public boolean deletarPessoa(Pessoa pTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("delete from pessoa where nome = ?");
-			stmt.setString(1, pTMP.getNome());
+			stmt = con.prepareStatement("delete from pessoa where cpf = ?");
+			stmt.setString(1, pTMP.getCpf());
 			int rowAf = stmt.executeUpdate();
 			if (rowAf == 1) {
 				con.commit();
@@ -97,6 +99,7 @@ public class PessoaDAO {
 			}
 		} catch (Exception e) {
 			try {
+				System.out.println("Falha ao deletar pessoa");
 				con.rollback();
 				return false;
 			} catch (SQLException e1) {
@@ -122,7 +125,7 @@ public class PessoaDAO {
 
 		try {
 			con.setAutoCommit(false);
-			stmt = con.prepareStatement("select cpf,nome, from pessoa where cpf = ?");
+			stmt = con.prepareStatement("select cpf,nome,sexo,telefone,dt_nascimento from pessoa where cpf = ?");
 			stmt.setString(1, cpf);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
