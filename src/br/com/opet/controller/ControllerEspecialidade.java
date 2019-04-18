@@ -8,6 +8,7 @@ import br.com.opet.view.TelaEspecialidade;
 
 public class ControllerEspecialidade {
 	TelaEspecialidade te = new TelaEspecialidade();
+	EspecialidadeDAO eDAO = new EspecialidadeDAO();
 
 	public void showSubMenuEspecialidade() throws Exception {
 		int opc = te.showSubMenuPrincipal();
@@ -18,6 +19,13 @@ public class ControllerEspecialidade {
 				break;
 			case 2:
 				Listar();
+				break;
+			case 3:
+				showAtualizar();
+				break;
+			case 4:
+				System.out.println("A implementar");
+				break;
 			default:
 				break;
 			}
@@ -27,8 +35,25 @@ public class ControllerEspecialidade {
 
 	private void showCadastrar() throws Exception {
 		Especialidade esp = te.showCadastrar();
-		EspecialidadeDAO eDAO = new EspecialidadeDAO();
 		eDAO.salvarEspecialidade(esp);
+	}
+
+	private void showAtualizar() {
+		ArrayList<Integer> listaId = Listar();
+		int id = -1;
+		do {
+			id = te.showMenuRecuperar();
+		} while (!listaId.contains(id));
+		Especialidade descricao;
+		try {
+			descricao = te.showCadastrar();
+			if (eDAO.atualizarEspecialidade(id, descricao.getDescricao())) {
+				System.out.println("Descricao atualizada com Sucesso");
+			}
+		} catch (Exception e) {
+			System.err.println("falha ao atualizar!");
+		}
+		
 	}
 
 	public ArrayList<Integer> Listar() {
