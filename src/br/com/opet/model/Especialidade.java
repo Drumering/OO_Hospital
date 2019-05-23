@@ -1,8 +1,17 @@
 package br.com.opet.model;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
 public class Especialidade {
 	private int id;
 	private String descricao;
+	
+	public Especialidade() {
+		
+	}
 
 	public Especialidade(int id, String descricao) {
 		this.id = id;

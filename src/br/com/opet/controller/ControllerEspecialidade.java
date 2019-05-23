@@ -2,40 +2,23 @@ package br.com.opet.controller;
 
 import java.util.ArrayList;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 import br.com.opet.model.Especialidade;
 import br.com.opet.model.dao.EspecialidadeDAO;
 import br.com.opet.view.TelaEspecialidade;
 
+@ManagedBean
+@SessionScoped
 public class ControllerEspecialidade {
 	TelaEspecialidade te = new TelaEspecialidade();
 	EspecialidadeDAO eDAO = new EspecialidadeDAO();
 
-	public void showSubMenuEspecialidade() throws Exception {
-		int opc = te.showSubMenuPrincipal();
-		while (opc != 0) {
-			switch (opc) {
-			case 1:
-				showCadastrar();
-				break;
-			case 2:
-				Listar();
-				break;
-			case 3:
-				showAtualizar();
-				break;
-			case 4:
-				System.out.println("A implementar");
-				break;
-			default:
-				break;
-			}
-			opc = te.showSubMenuPrincipal();
-		}
-	}
-
-	private void showCadastrar() throws Exception {
-		Especialidade esp = te.showCadastrar();
+	public String showCadastrar(Especialidade esp) throws Exception {
+		//Especialidade esp = te.showCadastrar();
 		eDAO.salvarEspecialidade(esp);
+		return "/index.xhtml";
 	}
 
 	private void showAtualizar() {

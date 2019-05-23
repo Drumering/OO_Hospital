@@ -21,7 +21,7 @@ public class TelaEspecialidade {
 	}
 
 	public Especialidade showCadastrar() throws Exception {
-		System.out.println("Informe o nome da nova ESPECIALIDADE: ");
+		//System.out.println("Informe o nome da nova ESPECIALIDADE: ");
 		String nomeEspecialidade = Reader.readString();
 		return new Especialidade(nomeEspecialidade);
 	}
