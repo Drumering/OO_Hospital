@@ -21,6 +21,7 @@ public class ControllerEspecialidade {
 		return "/especialidades/listarEspecialidades.xhtml";
 	}
 
+	
 	/*private void showAtualizar() {
 		ArrayList<Integer> listaId = Listar();
 		int id = -1;
