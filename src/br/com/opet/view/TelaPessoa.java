@@ -167,7 +167,7 @@ public class TelaPessoa {
 
 		if (opc == 1) {
 			int esp = -1;
-			ArrayList<Integer> idEspecialidade = cEspecialidade.Listar();
+			ArrayList<Integer> idEspecialidade = null;//cEspecialidade.Listar();
 			System.out.println("Especialidade: ");
 			do {
 				System.out.println("informe uma opcao:");

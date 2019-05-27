@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Listagem</title>
+	<h:outputStylesheet name="style.css" library="css" />
+</h:head>
+<body>
+	<h:form id="produtoForm">
+		<h2>
+			<p>Especialidades Cadastradas</p>
+		</h2>
+		<h:dataTable id="espTable"
+			value="#{controllerEspecialidade.Listar()}" var="ce">
+			<center>
+				<h2>
+					<h:outputText value="especialidades" />
+				</h2>
+			</center>
+			<h:column>
+				<f:facet name="header">Id da especialidade</f:facet>
+				<h:outputText value="#{ce.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Descricao da Especialidade</f:facet>
+				<h:outputText value="#{ce.descricao}" />
+			</h:column>
+		</h:dataTable>
+		<h:commandButton action="/especialidades/cadastroEspecialidades.xhtml" value="Cadastrar" />
+		<h:commandButton action="/index.xhtml" value="Voltar" />
+	</h:form>
+</body>
+</html>

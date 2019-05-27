@@ -3,25 +3,25 @@ package br.com.opet.controller;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import br.com.opet.model.Especialidade;
 import br.com.opet.model.dao.EspecialidadeDAO;
 import br.com.opet.view.TelaEspecialidade;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ControllerEspecialidade {
 	TelaEspecialidade te = new TelaEspecialidade();
 	EspecialidadeDAO eDAO = new EspecialidadeDAO();
 
 	public String showCadastrar(Especialidade esp) throws Exception {
-		//Especialidade esp = te.showCadastrar();
+		// Especialidade esp = te.showCadastrar();
 		eDAO.salvarEspecialidade(esp);
-		return "/index.xhtml";
+		return "/especialidades/listarEspecialidades.xhtml";
 	}
 
-	private void showAtualizar() {
+	/*private void showAtualizar() {
 		ArrayList<Integer> listaId = Listar();
 		int id = -1;
 		do {
@@ -36,17 +36,12 @@ public class ControllerEspecialidade {
 		} catch (Exception e) {
 			System.err.println("falha ao atualizar!");
 		}
-		
-	}
 
-	public ArrayList<Integer> Listar() {
+	}*/
+
+	public ArrayList<Especialidade> Listar() {
 		EspecialidadeDAO eDAO = new EspecialidadeDAO();
 		ArrayList<Especialidade> lista = eDAO.listarEspecialidade();
-		ArrayList<Integer> y = new ArrayList<Integer>();
-		for (Especialidade esp : lista) {
-			te.showEspecialidade(esp);
-			y.add(esp.getId());
-		}
-		return y;
+		return lista;
 	}
 }
