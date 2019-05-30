@@ -12,7 +12,7 @@ public class EspecialidadeDAO {
 
 	private final String INSERT = "insert into especialidade" + "(id_esp,desc_esp)" + " values(seq_esp.nextval,?)";
 
-	public boolean salvarEspecialidade(Especialidade eTMP) {
+	public boolean salvar(Especialidade eTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
 		try {
@@ -89,7 +89,7 @@ public class EspecialidadeDAO {
 		return false;
 	}
 
-	public ArrayList<Especialidade> listarEspecialidade() {
+	public ArrayList<Especialidade> listar() {
 		ArrayList<Especialidade> lEsp = new ArrayList<Especialidade>();
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;

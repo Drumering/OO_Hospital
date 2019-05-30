@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import br.com.opet.model.top.Pessoa;
 
 public class PessoaDAO {
-	public boolean salvar(Pessoa pTMP) {
+	protected boolean salvar(Pessoa pTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
 

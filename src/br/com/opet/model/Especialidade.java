@@ -1,14 +1,14 @@
 package br.com.opet.model;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
+import br.com.opet.model.dao.EspecialidadeDAO;
 
 @ManagedBean
-@RequestScoped
-public class Especialidade {
+public class Especialidade extends EspecialidadeDAO {
 	private int id;
 	private String descricao;
-	
+
 	public Especialidade() {
 	}
 

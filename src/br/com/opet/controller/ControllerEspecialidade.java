@@ -12,10 +12,10 @@ import br.com.opet.view.TelaEspecialidade;
 public class ControllerEspecialidade {
 	TelaEspecialidade te = new TelaEspecialidade();
 	EspecialidadeDAO eDAO = new EspecialidadeDAO();
+	Especialidade e = new Especialidade();
 
-	public String showCadastrar(Especialidade esp) throws Exception {
-		// Especialidade esp = te.showCadastrar();
-		eDAO.salvarEspecialidade(esp);
+	public String cadastrar(Especialidade esp) throws Exception {
+		e.salvar(esp);
 		return "/especialidades/listarEspecialidades.xhtml";
 	}
 
@@ -33,8 +33,6 @@ public class ControllerEspecialidade {
 	 */
 
 	public ArrayList<Especialidade> Listar() {
-		EspecialidadeDAO eDAO = new EspecialidadeDAO();
-		ArrayList<Especialidade> lista = eDAO.listarEspecialidade();
-		return lista;
+		return e.listar();
 	}
 }

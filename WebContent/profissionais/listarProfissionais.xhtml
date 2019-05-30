@@ -11,25 +11,34 @@
 <body>
 	<h:form id="produtoForm">
 		<h2>
-			<p>Especialidades Cadastradas</p>
+			<p>Profissionais Cadastradas</p>
 		</h2>
 		<h:dataTable id="espTable"
-			value="#{controllerEspecialidade.Listar()}" var="ce">
+			value="#{controllerPessoa.listar()}" var="cp">
 			<center>
 				<h2>
-					<h:outputText value="especialidades" />
+					<h:outputText value="profissionais" />
 				</h2>
 			</center>
 			<h:column>
-				<f:facet name="header">Id da especialidade</f:facet>
-				<h:outputText value="#{ce.id}" />
+				<f:facet name="header">CPF</f:facet>
+				<h:outputText value="#{cp.cpf}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Descricao da Especialidade</f:facet>
-				<h:outputText value="#{ce.descricao}" />
-			</h:column>			
+				<f:facet name="header">Nome do Profissional</f:facet>
+				<h:outputText value="#{cp.nome}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Sexo</f:facet>
+				<h:outputText value="#{cp.sexo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputText value="#{cp.telefone}" />
+			</h:column>
 		</h:dataTable>
-		<h:commandButton action="/especialidades/cadastrarEspecialidades.xhtml" value="Cadastrar Nova" />
+		<h:commandButton action="/profissionais/cadastrarProfissionais.xhtml" value="Cadastrar Nova" />
 		<h:commandButton action="/index.xhtml" value="Voltar" />
 	</h:form>
 </body>

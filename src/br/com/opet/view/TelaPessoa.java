@@ -215,8 +215,4 @@ public class TelaPessoa {
 		}
 		return p;
 	}
-
-	public void showPessoa(Pessoa p) {
-		System.out.println(p);
-	}
 }

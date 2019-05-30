@@ -1,9 +1,17 @@
 package br.com.opet.model.top;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Pessoa {
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import br.com.opet.model.dao.PessoaDAO;
+
+@ManagedBean
+@SessionScoped
+public class Pessoa extends PessoaDAO{
 
 	protected int Tipo;
 	protected String nome;
@@ -20,6 +28,19 @@ public class Pessoa {
 		str = this.nome + " - " + dtNascimento + " - " + this.cpf + " - " + this.Sexo + " - " + this.telefone;
 
 		return str;
+	}
+	
+	public Pessoa() {
+		
+	}
+	
+	public ArrayList<Pessoa> listar(){
+		return super.listar();
+	}
+	
+	public boolean salvar() {
+		System.err.println("Errado");
+		return false;
 	}
 
 	/**

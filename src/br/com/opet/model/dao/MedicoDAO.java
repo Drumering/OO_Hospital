@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import br.com.opet.model.Medico;
+import br.com.opet.model.top.Pessoa;
 
-public class MedicoDAO {
-	public boolean salvarMedico(Medico mTMP) {
+public class MedicoDAO extends Pessoa{
+
+	public boolean salvar(Medico mTMP) {
 		Connection con = Conexao.getConexao();
 		PreparedStatement stmt = null;
 
@@ -15,7 +17,7 @@ public class MedicoDAO {
 			con.setAutoCommit(false);
 			stmt = con.prepareStatement("insert into medico(cpf,especialidade) values (?,?)");
 			stmt.setString(1, mTMP.getCpf());
-			stmt.setInt(2, mTMP.getEspecialidade());
+			stmt.setInt(2, mTMP.getEspecialidade().getId());
 			
 			int rowAf = stmt.executeUpdate();
 			if (rowAf == 1) {

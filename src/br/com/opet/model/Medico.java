@@ -2,12 +2,16 @@ package br.com.opet.model;
 
 import java.util.Date;
 
-import br.com.opet.model.top.Pessoa;
+import javax.faces.bean.ManagedBean;
 
-public class Medico extends Pessoa {
-	private int especialidade;
-	
-	public Medico(int Tipo,String nome, Date dtNascimento, String cpf, String sexo, String telefone, int especialidade) {
+import br.com.opet.model.dao.MedicoDAO;
+
+@ManagedBean
+public class Medico extends MedicoDAO {
+	private Especialidade especialidade;
+
+	public Medico(int Tipo, String nome, Date dtNascimento, String cpf, String sexo, String telefone,
+			Especialidade especialidade) {
 		this.Tipo = Tipo;
 		this.nome = nome;
 		this.dtNascimento = dtNascimento;
@@ -15,6 +19,14 @@ public class Medico extends Pessoa {
 		this.Sexo = sexo;
 		this.telefone = telefone;
 		this.especialidade = especialidade;
+	}
+
+	public Medico() {
+		this.especialidade = new Especialidade();
+	}
+
+	public boolean salvar() {
+		return super.salvar(this);
 	}
 
 	public String toString() {
@@ -27,14 +39,15 @@ public class Medico extends Pessoa {
 	/**
 	 * @return the especialidade
 	 */
-	public int getEspecialidade() {
+	public Especialidade getEspecialidade() {
 		return especialidade;
 	}
 
 	/**
-	 * @param especialidade the especialidade to set
+	 * @param especialidade
+	 *            the especialidade to set
 	 */
-	public void setEspecialidade(int especialidade) {
+	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
 	}
 }
